@@ -4,7 +4,7 @@
 
 \usepackage{graphicx,url}
 
-%\usepackage[brazil]{babel}   
+\usepackage[brazil]{babel}   
 \usepackage[latin1]{inputenc}  
 
      
@@ -49,13 +49,44 @@ TODO
 
 TODO
 
-\subsection{Rota\~{a}o de vetores}
+\subsection{Rota\c{c}\~{a}o de vetores}
 
-TODO
+A rota\c{c}\~{a}o de vetores \'{e} uma opera\c{c}\~{a}o aplicada em \textit{arrays} e outros
+\textit{containers} utilizada diferentes casos de uso na computa\c{c}\~{a}o.
+Ela consiste em retirar um elemento de uma das extremidades do vetor e
+inser\'{i}-lo na outra extremidade, causando a movimenta\c{c}\~{a}o de todos os elementos
+para a esquerda ou para a direita, dependendo de qual a extremidade que o elemento
+foi removido.
+
+Dentro do contexto de algoritmos gen\'{e}ticos, para realizar um \textit{crossover} pode ser
+necess\'{a}rio realizar diferentes opera\c{c}\~{o}es em um vetor, e uma delas que \'{e} muito
+utilizada \'{e} a rota\c{c}\~{a}o. Um dos operadores de \textit{crossover} que requer uma
+rota\c{c}\~{a}o \'{e} o \textit{Order Crossover} (OX), onde \'{e} selecionado um subconjunto dos genes
+de um indiv\'{i}duo e inserido em outro indiv\'{i}duo, causando uma rota\c{c}\~{a}o dos elementos j\'{a}
+inseridos no segundo indiv\'{i}duo tanto para a direita quanto para a esquerda. Este comportamento \'{e}
+ilustrado na Figura~\ref{fig:orderCrossover}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=.8\textwidth]{order_crossover.jpg}
+\caption{O funcionamento do Order Crossover}
+\label{fig:orderCrossover}
+\end{figure}
+
+Dependendo da estrutura de dados e o algoritmo utilizado, uma rota\c{c}\~{a}o pode levar \`{a}
+copia de todos os elementos de um \textit{container} para outro, tendo em vista que, por exemplo,
+um vetor somente permite a inser\c{c}\~{a}o de elementos em somente uma extremidade. Este
+comportamento pode tornar esta simples tarefa uma, rotina de complexidade $\mathcal{O}(n)$.
+
+Entretanto esta complexidade pode ser reduzida simplesmente utilizando uma estrutura do tipo
+\textit{Deque} (\textit{Dual-Ended Queue}). Esta estrutura de dados permite que sejam inseridos
+elementos por ambos os lados, permitindo a rota\c{c}\~{a}o dos elementos com complexidade
+$\mathcal{O}(n)$ com f\'{a}cil implementa\c{c}\~{a}o.
 
 \subsection{Gera\c{c}\~{a}o aleat\'{o}ria de elementos n\~{a}o repetitivos}
 
-TODO
+Ao inicializar uma popula\c{c}\~{a}o de indivíduos aleatoriamente, em muitos casos existe
+a necessidade de um indivíduo não possuir genes com valores repetidos.
 
 \subsection{Gera\c{c}\~{a}o alet\'{o}ria de subvetores}
 
