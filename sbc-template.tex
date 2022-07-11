@@ -83,7 +83,11 @@ Entretanto esta complexidade pode ser reduzida simplesmente utilizando uma estru
 elementos por ambos os lados, permitindo a rota\c{c}\~{a}o dos elementos com complexidade
 $\mathcal{O}(1)$ com f\'{a}cil implementa\c{c}\~{a}o.
 
-\subsection{Gera\c{c}\~{a}o aleat\'{o}ria de elementos n\~{a}o repetitivos}
+Vale ressaltar que a estrutura de \textit{hash} n\~{a}o suporta ordena\c{c}\~{a}o, ent\~{a}o
+ainda \'{E} necess\'{a}rio utilizar um vetor para guardar os valores gerados. Esta decis\~{a}o
+aumenta o consumo de mem\~{a}ria RAM mas pode diminuir consideravelmente o tempo de processamento.
+
+\subsection{Gera\c{c}\~{a}o aleat\'{o}ria de elementos n\~{a}o repetitivos}\label{sec:nonRepeating}
 
 Ao inicializar uma popula\c{c}\~{a}o de indiv\'{i}duos aleatoriamente, em muitos casos existe
 a necessidade de um indiv\'{i}duo n\~{a}o possuir genes com valores repetidos. Ou seja, a cada novo
@@ -117,7 +121,37 @@ as entradas anteriores. Desta forma, a complexidade algor\'{i}tmica \'{e} reduzi
 
 \subsection{Gera\c{c}\~{a}o alet\'{o}ria de subvetores}
 
-TODO
+Em alguns casos de uso, os genes do ind\'{i}viduo podem ser agrupados, a fim de atender a um sentido logico do problema
+o qual esta sendo modelado. Por exemplo, quando se modela o ind\'{i}viduo para resolver o Problema de Roteamento de
+Ve\'{i}culos (PRV), \'{e} comum inserir genes adicionais que dizem respeito as posi\c{c}\~{o}es do vetor que contem a primeira
+localiza\c{c}\~{a}o da rota.
+
+Na Figura~\ref{fig:vrpGenes}, o cromossomo indiv\'{i}duo pode ser divido em duas partes: a ordem das localiza\c{c}\~{o}es
+a serem visitadas e os pontos de quebra do vetor para separa\c{c}\~{a}o das rotas. Note que a segunda parte cont\'{e}m os
+indices do vetor onde \'{e} iniciada a representa\c{c}\~{a}o de uma nova rota.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=.8\textwidth]{vrp_genes.jpg}
+    \caption{Modelagem de um indiv\'{i}duo para o PRV}
+    \label{fig:vrpGenes}
+\end{figure}
+
+Como visto na se\c{c}\~{a}o~\ref{sec:nonRepeating} \'{e} poss\'{i}vel utilizar uma estrutura de \textit{hash} para
+acelerar o processo de busca de um elemento, mas ainda \'{e} necess\'{a}rio utilizar um vetor, porque o
+\textit{hash} n\~{a}o \'{e} uma estrutura ordenada. Por\'{e}m para gerar a segunda parte deste vetor, \'{e} necess\'{a}rio que
+os elementos gerados estejam em ordem crescente. Deste modo, ainda seria preciso executar um
+algoritmo de ordena\c{c}\~{a}o ap\'{o}s a gera\c{c}\~{a}o dos elementos.
+
+Para evitar esta etapa, uma solu\c{c}\~{a}o seria substituir o vetor por uma estrutura de \'{a}rvore ordenada. Existem
+alguns tipos de \'{a}rvores ordenadas, e uma das mais utilizadas \'{e} a \'{a}rvore Rubro-Negra, devido \`{a} sua
+capacidade de auto-balanceamento e garantia de busca de um elemento com complexidade $\mathcal{O}(\log_2n)$.
+Assim \'{e} poss\'{i}vel armazenar os valores gerados em ordem enquanto s\~{a}o gerados.
+
+Dependendo da quantidade m\'{a}xima de elementos deste vetor aleat\'{o}rio, utilizar somente uma \'{a}rvore pode
+ser o suficiente para adquirir um desempenho aceit\'{a}vel. Mas ainda \'{e} poss\'{a}vel utilizar um \textit{hash}
+auxiliar para acelerar verifica\c{c}\~{a}o de exist\^{e}ncia de um elemento. Assim a complexidade desta etapa seria reduzida
+de $\mathcal{O}(\log_2n)$ para $\mathcal{O}(1)$.
 
 \section{Implementa\c{c}\~{a}o}
 
