@@ -150,12 +150,32 @@ Assim \'{e} poss\'{i}vel armazenar os valores gerados em ordem enquanto s\~{a}o 
 
 Dependendo da quantidade m\'{a}xima de elementos deste vetor aleat\'{o}rio, utilizar somente uma \'{a}rvore pode
 ser o suficiente para adquirir um desempenho aceit\'{a}vel. Mas ainda \'{e} poss\'{a}vel utilizar um \textit{hash}
-auxiliar para acelerar verifica\c{c}\~{a}o de exist\^{e}ncia de um elemento. Assim a complexidade desta etapa seria reduzida
-de $\mathcal{O}(\log_2n)$ para $\mathcal{O}(1)$.
+auxiliar para acelerar verifica\c{c}\~{a}o de exist\^{e}ncia de um elemento. Assim a complexidade desta etapa seria
+reduzida de $\mathcal{O}(\log_2n)$ para $\mathcal{O}(1)$.
 
 \section{Implementa\c{c}\~{a}o}
 
-TODO
+Como existe uma grande quantidade de estruturas de dados existentes e cada uma possui pontos fortes e fracos,
+\'{e} comum que se utilize em um projeto de software uma grande variedade delas, a fim de extrair a melhor utilidade
+de cada uma. Entretanto, se fosse necess\'{a}rio implement\'{a}-las manualmente, o projeto se tornaria muito mais
+demorado e talvez at\'{e} invi\'{a}vel. Al\'{e}m disso, muitas destas estruturas possuem implementa\c{c}\~{o}es
+complexas e muitas vezes n\~{a}o se consegue alcan\c{c}ar o desempenho esperado com uma implementa\c{c}\~{a}o manual
+porque \'{e} preciso muito tempo para refatorar o c\'{o}digo at\'{e} que ele alcance tal n\'{i}vel de efici\^{e}ncia.
+
+Por estes motivos, \'{e} importante utilizar as estruturas de dados dispon\'{i}veis na biblioteca padr\~{a}o da linguagem
+utilizada. O projeto da biblioteca padr\~{a}o \'{e} mais maduro e j\'{a} foi testado muitas vezes para garantir sua
+efici\^{e}ncia, al\'{e}m de ser praticamente livre de \textit{bugs}. Todas as estruturas de dados citadas neste artigo
+est\~{a}o dispon\'{i}veis na linguagem C++. Muitas delas tamb\'{e}m est\~{a}o dispon\'{i}veis em outras linguagens de
+programa\c{c}\~{a}o, como Python e Java.
+
+Mesmo que esta estrutura n\~{a}o esteja dispon\'{i}vel na linguagem de programa\c{c}\~{a}o desejada e n\~{a}o exista
+uma solu\c{c}\~{a}o similar, pode-se optar por bibliotecas de terceiros que realizem esta implementa\c{c}\~{a}o. Apesar deste
+m\'{e}todo n\~{a}o garantir um projeto eficiente e livre de \textit{bugs}, ainda \'{e} uma op\c{c}\~{a}o mais segura
+do que realizar a implementa\c{c}\~{a}o manual.
+
+Caso a pessoa esteja disposta a colaborar com o desenvolvimento de uma biblioteca de estrutura de dados, existem
+diversos resposit\'{a}rios de c\'{o}digo aberto dispon\'{i}veis na internet. Assim, a pessoa tem a chance de
+colaborar com uma equipe em um projeto que tem um potencial de ajudar muitos desenvolvedores.
 
 \section{Conclus\~{a}o}
 
