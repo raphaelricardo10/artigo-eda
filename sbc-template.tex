@@ -79,24 +79,51 @@ um vetor somente permite a inser\c{c}\~{a}o de elementos em somente uma extremid
 comportamento pode tornar esta simples tarefa uma, rotina de complexidade $\mathcal{O}(n)$.
 
 Entretanto esta complexidade pode ser reduzida simplesmente utilizando uma estrutura do tipo
-\textit{Deque} (\textit{Dual-Ended Queue}). Esta estrutura de dados permite que sejam inseridos
+\textit{Deque} (\textit{Double-Ended Queue}). Esta estrutura de dados permite que sejam inseridos
 elementos por ambos os lados, permitindo a rota\c{c}\~{a}o dos elementos com complexidade
-$\mathcal{O}(n)$ com f\'{a}cil implementa\c{c}\~{a}o.
+$\mathcal{O}(1)$ com f\'{a}cil implementa\c{c}\~{a}o.
 
 \subsection{Gera\c{c}\~{a}o aleat\'{o}ria de elementos n\~{a}o repetitivos}
 
-Ao inicializar uma popula\c{c}\~{a}o de indivíduos aleatoriamente, em muitos casos existe
-a necessidade de um indivíduo não possuir genes com valores repetidos.
+Ao inicializar uma popula\c{c}\~{a}o de indiv\'{i}duos aleatoriamente, em muitos casos existe
+a necessidade de um indiv\'{i}duo n\~{a}o possuir genes com valores repetidos. Ou seja, a cada novo
+elemento inserido com um valor aleat\'{o}rio, deve-se certificar se o mesmo j\'{a} foi inserido
+anteriormente. Caso positivo, devem ser gerados valores aleat\'{o}rios at\'{e} que esta
+condic\c{c}\~{a}o se torne falsa, e ent\~{a}o o elemento \'{e} inserido no cromossomo do indiv\'{i}duo.
+
+Como pode-se perceber, podem ser necess\'{a}rias muitas buscas sucessivas no vetor de genes para verificar
+a exist\^{e}ncia de um elemento. A complexidade desta opera\c{c}\~{a}o geralmente \'{e} $\mathcal{O}(n)$,
+por\'{e}m nesta situa\c{c}\~{a}o, o valor de n \'{e} incrementado por um a cada elemento que \'{e} inserido
+neste vetor. O n\'{u}mero de buscas realizadas nesta situa\c{c}\~{a}o \'{e} dado pela
+Equa\c{c}\~{a}o~\ref{eq:numNatural}, onde n \'{e} o n\'{u}mero m\'{a}ximo de genes do indiv\'{i}duo. A partir
+deste fato, conclui-se que a complexidade algor\'{i}mica da gera\c{c}\~{a}o de todos os genes \'{e} de
+$\mathcal{O}(n^2)$.
+
+\begin{equation}
+    \frac{n(n+1)}{2}
+    \label{eq:numNatural}
+\end{equation}
+
+\'{E} muito importante otimizar esta etapa do processo, porque ela \'{e} executada inicialmente m vezes, sendo
+m o tamanho da popula\c{c}\~{a}o. Realizar uma implementa\c{c}\~{a}o ineficiente ocasionar\'{a} um aumento de
+tempo para computar os resultados, independentemente do qu\~{a}o eficiente seja a heur\'{i}stica durante a etapa
+de evolu\c{a}\`{a}o.
+
+Uma das op\c{c}\~{o}es para solucionar este problema \'{e} adotar uma estrutura de \textit{hash} para armazenar os
+elementos j\'{a} inseridos. Para este tipo de estrutura, \'{e} adotada uma fun\c{c}\~{a}o que recebe uma entrada e,
+numa situa\c{c}\~{a}o ideal, produz uma sa\'{i}da exclusiva para esta determinada entrada. Desta maneira, \'{e}
+poss\'{i}vel verificar a exist\^{e}ncia de um elemento no \textit{container} sem a necessidade de verificar todas
+as entradas anteriores. Desta forma, a complexidade algor\'{i}tmica \'{e} reduzida para $\mathcal{O}(1)$.
 
 \subsection{Gera\c{c}\~{a}o alet\'{o}ria de subvetores}
 
 TODO
 
-\section{Implement\c{c}\~{a}o}
+\section{Implementa\c{c}\~{a}o}
 
 TODO
 
-\section{Conclus\c{c}\~{a}o}
+\section{Conclus\~{a}o}
 
 TODO
 
