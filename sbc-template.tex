@@ -35,17 +35,48 @@
 
 \section{Introdu\c{c}\~{a}o}
 
-Como os genes de um indiv\'{i}duo geralmente s\~{a}o armazenados em forma de vetor, \'{e} comum
-que existam tarefas envolvidas que sejam computacionalmente custosas, como iterar um vetor repetidas
-vezes, com comparar dois vetores e ordena\c{c}\~{a}o de vetores.
+Atualmente existem muitos problemas que os computadores n\~{a}o s\~{a}o capazes de resolver em tempo
+h\'{a}bil quando h\'{a} um grande volume de dados, principalmente os problemas de otimiza\c{c}\~{a}o
+combinat\'{o}ria. Alguns algoritmos e modelagens matem\'{a}ticas levam um tempo exponencial produzir
+uma sa\'{i}da em fun\c{c}\~{a}o do tamanho das entradas, o que demonstra a necessidade de utilizarmos
+m\'{e}todos de aproxima\c{c}\~{a}o para resolver tais problemas.
 
-\section{Revis\~{a}o da Literatura} \label{sec:firstpage}
+A meta-heur\'{i}stica \'{e} um \textit{framework} independente de problema que tem o objetivo
+de fornecer solu\c{c}\~{o}es vi\'{a}veis com resultados iguais ou aproximados aos m\'{e}todos
+exatos com muito menos tempo de execu\c{c}\~{a}o \cite{book:metaheuristics}.
 
-TODO
+O algoritmo gen\'{e}tico \'{e} um exemplo de meta-heur\'{i}stica, grandemente utilizado para
+resolver diversos problemas, como o Problema de Roteamento de Ve\'{i}culos \cite{berger:03}, Problema do Caixeiro
+Viajante e otimiza\c{c}\~{a}o de hiperpar\^{a}metros em algoritmos de aprendizado de maquina \cite{misc:introGA}.
+
+O objetivo deste trabalho \'{e} mostrar algumas aplica\c{c}\~{o}es de estruturas de dados no contexto de
+algoritmo gen\'{e}tico, al\'{e}m de demonstrar a import\^{a}ncia de utilizar as estruturas de dados
+mais adequadas para o problema e como esta escolha acarreta no desempenho do programa.
 
 \section{O Algoritmo Gen\'{e}tico}
 
-TODO
+O algoritmo gen\'{e}tico \'{e} fortemente inspirado na biologia e na evolu\c{c}\'{a}o das esp\'{e}cies.
+Uma popula\c{c}\~{a}o \'{e} formada por um conjunto de indiv\'{i}duos, onde cada indiv\'{i}duo possui uma
+solu\c{c}\~{a}o para o problema. O objetivo \'{e} selecionar os indiv\'{i}duos com as melhores
+solu\c{c}\~{o}es e combin\'{a}-los para tentar encontrar uma solu\c{c}\~{a}o melhor.
+
+A solu\c{c}\~{a}o do indiv\'{i}duo fica codificada em seus cromossomos. Um cromossomo \'{e} um conjunto de genes,
+onde cada gene possui um valor codificado com parte da solu\c{c}\~{a}o. A ordem e os valores dos genes do
+indiv\'{i}duo s\~{a}o avaliados atrav\'{e}s de uma fun\c{c}\~{a}o chamada \textit{fun\c{c}\~{a}o de aptid\~{a}o}, que
+quantifica o qu\~{a}o boa \'{e} a solu\c{c}\~{a}o.
+
+Uma gera\c{c}\~{a}o se caracteriza por uma itera\c{c}\~{a}o do algoritmo para tentar causar uma evolu\c{c}\~{a}o de
+pelo menos um indiv\'{i}duo. Ela \'{e} dividida em diferentes etapas, sendo as principais: sele\c{c}\~{a}o,
+\textit{crossover} e muta\c{c}\~{a}o. Na sele\c{c}\~{a}o, s\c{c}\~{a}o escolhidos indiv\'{i}duos de acordo com algum
+crit\'{e}rio. No \textit{crossover}, os indiv\'{i}duos selecionados s\~{a}o combinados para tentar encontrar
+uma solu\c{c}\~{a}o melhor. Na muta\c{c}\~{a}o, \'{e} aplicada uma altera\c{c}\~{a}o nos genes em indiv\'{i}duos
+aleat\'{o}rios para diversificar a popula\c{c}\~{a}o e tentar escapar de uma converg\^{e}ncia prematura do algoritmo.
+
+Como os genes de um indiv\'{i}duo geralmente s\~{a}o armazenados em forma de vetor, \'{e} comum
+que existam tarefas envolvidas que sejam computacionalmente custosas, como iterar um vetor repetidas
+vezes, comparar dois vetores e ordena\c{c}\~{a}o de vetores. Algumas rotinas inclusive, s\~{a}o executadas muitas
+vezes, por exemplo, se aplicadas \`{a} toda popula\c{c}\~{a}o a cada vez que uma gera\c{c}\~{a}o se inicia. Por este motivo,
+\'{e} importante se preocupar em desenvolver um c\'{o}digo bem otimizado.
 
 \section{Problemas a serem otimizados}
 
@@ -74,10 +105,10 @@ inseridos no segundo indiv\'{i}duo tanto para a direita quanto para a esquerda. 
 ilustrado na Figura~\ref{fig:orderCrossover}
 
 \begin{figure}[ht]
-\centering
-\includegraphics[width=.8\textwidth]{order_crossover.jpg}
-\caption{O funcionamento do Order Crossover (adaptado de \cite{misc:geneticOperations})}
-\label{fig:orderCrossover}
+    \centering
+    \includegraphics[width=.8\textwidth]{order_crossover.jpg}
+    \caption{O funcionamento do Order Crossover (adaptado de \cite{misc:geneticOperations})}
+    \label{fig:orderCrossover}
 \end{figure}
 
 Dependendo da estrutura de dados e o algoritmo utilizado, uma rota\c{c}\~{a}o pode levar \`{a}
